@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', 'admin_controller@check_authority');
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
+Route::post('/adminlogin', 'admin_controller@admin_login');
+Route::get('/adminlogout', 'admin_controller@admin_logout');
