@@ -15,6 +15,14 @@ class admin_controller extends Controller
         return view('admin.login');
       }
     }
+    public function check_path($path){
+      if(session("admin_id")){
+        return view('admin.'.$path);
+      }
+      else{
+        return redirect('/admin');
+      }
+    }
 
 	public function admin_login(Request $req){
 
@@ -42,4 +50,5 @@ class admin_controller extends Controller
     session()->flush();
     return redirect("/admin");
   }
+
 }

@@ -4,142 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Dashboard</title>
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/adminlte/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="/adminlte/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/adminlte/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/adminlte/dist/css/skins/_all-skins.min.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+@include('admin.jsandcss')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>U</b> Ad</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Umobile</b> Admin</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/images/nyan.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo session('admin_real_name');?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="/images/nyan.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  <?php echo session('admin_real_name');?> - Web Developer
-                  <small>Member since Feb. 2018</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="/adminlogout" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="/images/nyan.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><?php echo session('admin_real_name');?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li class="{{Request::is('admin/dashboard')?'active':''}}">
-          <a href="/admin/dashboard">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="{{Request::is('admin/admincontrol')?'active':''}}">
-          <a href="admin/dashboard">
-            <i class="fa fa-user-circle"></i> <span>Quản lý admin</span>
-          </a>
-        </li>
-        <li class="{{Request::is('admin/brands')?'active':''}}">
-          <a href="/admin/dashboard">
-            <i class="fa fa-registered"></i> <span>Quản lý hãng</span>
-          </a>
-        </li>
-        <li class="{{Request::is('admin/products')?'active':''}}">
-          <a href="/admin/dashboard">
-            <i class="fa fa-cubes"></i> <span>Quản lý sản phẩm</span>
-          </a>
-        </li>
-        <li class="{{Request::is('admin/orders')?'active':''}}">
-          <a href="/admin/dashboard">
-            <i class="fa fa-shopping-cart"></i> <span>Quản lý đơn hàng</span>
-          </a>
-        </li>
-        <li class="{{Request::is('admin/members')?'active':''}}">
-          <a href="/admin/dashboard">
-            <i class="fa fa-users"></i> <span>Quản lý thành viên</span>
-          </a>
-        </li>
-        <li class="{{Request::is('admin/feedback')?'active':''}}">
-          <a href="/admin/dashboard">
-            <i class="fa fa-thumbs-up"></i> <span>Quản lý feedback & mailing</span>
-          </a>
-        </li>
-
-
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
+@include('admin.includes.header')
+@include('admin.includes.sidemenu')
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -221,39 +92,148 @@
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
-        <section class="col-lg-12 connectedSortable">
-          <div class="box box-info">
-            <div class="box-header">
-              <i class="fa fa-envelope"></i>
+        <section class="col-lg-7 connectedSortable">
+          <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Latest Members</h3>
 
-              <h3 class="box-title">Quick Email</h3>
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
-                        title="Remove">
-                  <i class="fa fa-times"></i></button>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <ul class="users-list clearfix">
+                    <li>
+                      <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                      <a class="users-list-name" href="#">Alexander Pierce</a>
+                      <span class="users-list-date">Today</span>
+                    </li>
+                  </ul>
+                  <!-- /.users-list -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer text-center">
+                  <a href="/admin/members" class="uppercase">View All Users</a>
+                </div>
+                <!-- /.box-footer -->
+              </div>
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Latest Orders</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
+            <!-- /.box-header -->
             <div class="box-body">
-              <form action="#" method="post">
-                <div class="form-group">
-                  <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject">
-                </div>
-                <div>
-                  <textarea class="textarea" placeholder="Message"
-                            style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                </div>
-              </form>
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Item</th>
+                    <th>Status</th>
+                    <th>Due Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
+                    <td>Call of Duty IV</td>
+                    <td>12/12/2018</td>
+                    <td><span class="label label-success">Shipped</span></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
             </div>
+            <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                <i class="fa fa-arrow-circle-right"></i></button>
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
+              <a href="/admin/orders" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
             </div>
+            <!-- /.box-footer -->
           </div>
         </section>
+        <section class="col-lg-5 connectedSortable">
+          <!-- PRODUCT LIST -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Top Selling Products</h3>
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <ul class="products-list product-list-in-box">
+                <li class="item">
+                  <div class="product-img">
+                    <img src="dist/img/default-50x50.gif" alt="Product Image">
+                  </div>
+                  <div class="product-info">
+                    <a href="javascript:void(0)" class="product-title">Samsung TV
+                      <span class="label label-warning pull-right">$1800</span></a>
+                    <span class="product-description">
+                          Samsung 32" 1080p 60Hz LED Smart HDTV.
+                        </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer text-center">
+              <a href="/admin/products" class="uppercase">View All Products</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <div class="box box-info">
+                <div class="box-header with-border">
+                  <i class="fa fa-envelope"></i>
+
+                  <h3 class="box-title">Quick Email</h3>
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <form action="#" method="post">
+                    <div class="form-group">
+                      <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="subject" placeholder="Subject">
+                    </div>
+                    <div>
+                      <textarea class="textarea" placeholder="Message"
+                                style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer text-center">
+                  <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
+                    <i class="fa fa-arrow-circle-right"></i></button>
+                </div>
+                <!-- /.box-footer -->
+              </div>
+        </section>
       </div>
       <!-- /.row (main row) -->
 
@@ -261,36 +241,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+@include('admin.includes.footer')
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="/adminlte/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="/adminlte/bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 3.3.7 -->
-<script src="/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Slimscroll -->
-<script src="/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="/adminlte/bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="/adminlte/dist/js/adminlte.min.js"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="/adminlte/dist/js/main.js"></script>
 </body>
 </html>
