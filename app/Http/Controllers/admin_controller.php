@@ -24,6 +24,8 @@ class admin_controller extends Controller
       }
     }
 
+
+
 	public function admin_login(Request $req){
 
       $input_username = $req->input('username');
@@ -51,4 +53,11 @@ class admin_controller extends Controller
     return redirect("/admin");
   }
 
+  public function products(){
+    return view('admin.products');
+  }
+
+  public function addproduct(Requset $req){
+
+  }
 }

@@ -17,3 +17,5 @@
 <script src="/adminlte/bower_components/fastclick/lib/fastclick.js"></script>
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
 <script src="/adminlte/dist/js/main.js"></script>
+<link rel="stylesheet" href="/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="/adminlte/bower_components/select2/dist/css/select2.min.css">
