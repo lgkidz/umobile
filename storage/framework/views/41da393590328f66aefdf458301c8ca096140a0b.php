@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
   <title>Products</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <?php echo $__env->make('admin.jsandcss', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -43,7 +43,7 @@
                   <div class="col-xs-4">
                     <div class="form-group">
                       <label for="brand">Brand</label>
-                      <select class="form-control" name="brand" id="brand" required>
+                      <select class="form-control" name="brand" id="brands" required>
                         <option value="">zz</option>
                       </select>
                     </div>
@@ -148,18 +148,7 @@
               <th>Quantity In Stock</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-              <td>0</td>
-              <td>Name dummy
-              </td>
-              <td>Dumy</td>
-              <td> 4</td>
-              <td>X</td>
-              <td>test</td>
-              <td>dummy</td>
-              <td>xx</td>
-            </tr>
+            <tbody id="products_table">
             </tbody>
             <tfoot>
             <tr>
@@ -186,10 +175,72 @@
 <script src="/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script>
-  $(function () {
-    $('#table').DataTable()
-  })
+
 </script>
+<script>
+var tabledata;
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+var original_table_data = "";
+function set_original_table_data(data){
+  original_table_data = data;
+}
+$(document).ready(function(){
+              $.ajax({
+                 type:'POST',
+                 url:'/admin/list_product',
+                 data:'z',
+                 success:function(data){
+                   console.log(data);
+                   tabledata = JSON.parse(data.products);
+                   set_original_table_data(tabledata);
+                   getbrands(JSON.parse(data.brands));
+                    filltable(tabledata);
+
+                 }
+              });
+});
+
+function getbrands(data){
+  var options = "";
+  for(var i = 0;i<data.length;i++){
+    options += '<option value="' + data[i].brand_id + '">' + data[i].brand_name + '</option>';
+  }
+  $("#brands").html(options);
+}
+
+function filltable(data){
+  var i;
+  var rows='';
+  for(i = 0;i<data.length;i++){
+    rows += '<tr oncontextmenu="return showcontextmenu(' + original_table_data[i].product_id + ');"">';
+    rows += '<td id="name_row_' + data[i].product_id + '">' + data[i].product_name + '</td>';
+    rows += '<td id="brand_row_' + data[i].brand_id + '">' + data[i].brand_name + '</td>';
+    rows += '<td id="image_row_' + data[i].product_id + '">' + data[i].image + '</td>';
+    rows += '<td id="color_row_' + data[i].product_id + '">' + data[i].color + '</td>';
+    rows += '<td id="specs_row_' + data[i].product_id + '"> Cpu:' + data[i].cpu;
+    rows += ', internal: ' + data[i].internal;
+    rows += ', external: ' + data[i].external;
+    rows += ', ram: ' + data[i].ram;
+    rows += ', camera: ' + data[i].camera;
+    rows += ', battery: ' + data[i].battery;
+    rows += ', sim: ' + data[i].sim + '</td>';
+    rows += '<td id="price_row_' + data[i].product_id + '">' + data[i].price + ' VND</td>';
+    rows += '<td id="description_row_' + data[i].product_id + '">' + data[i].description + '</td>';
+    rows += '<td id="quantity_row_' + data[i].product_id + '">' + data[i].quantity + '</td>';
+    rows += '</tr>';
+  }
+
+$("#products_table").html(rows);
+  $('#table').DataTable();
+
+}
+</script>
+
 <script>
 		  var loadFile = function(event) {
 		    var output = document.getElementById('output');

@@ -53,8 +53,12 @@ class admin_controller extends Controller
     return redirect("/admin");
   }
 
-  public function products(){
-    return view('admin.products');
+  public function list_product(){
+    $brands = DB::table('brand_tbl')->select('*')->get()->toJson();
+    $result = DB::table('product_tbl')->join('brand_tbl','product_tbl.brand_id','brand_tbl.brand_id')
+                                      ->select('product_tbl.*','brand_tbl.brand_name')
+                                      ->get()->toJson();
+    return response()->json(['products'=>$result, 'brands'=>$brands]);
   }
 
   public function addproduct(Requset $req){

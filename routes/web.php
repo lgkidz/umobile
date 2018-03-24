@@ -19,3 +19,4 @@ Route::get('/admin/{path?}', 'admin_controller@check_path');
 Route::post('/adminlogin', 'admin_controller@admin_login');
 Route::get('/adminlogout', 'admin_controller@admin_logout');
 Route::post('/admin/products','admin_controller@addproduct');
+Route::post('/admin/list_product','admin_controller@list_product');
