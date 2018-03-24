@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 11, 2018 lúc 08:47 AM
+-- Thời gian đã tạo: Th3 24, 2018 lúc 04:44 PM
 -- Phiên bản máy phục vụ: 10.1.21-MariaDB
 -- Phiên bản PHP: 7.1.11
 
@@ -37,6 +37,14 @@ CREATE TABLE `admin_tbl` (
   `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `admin_tbl`
+--
+
+INSERT INTO `admin_tbl` (`id`, `username`, `password`, `role`, `real_name`, `description`) VALUES
+(1, 'lgkidz', 'c984aed014aec7623a54f0591da07a85fd4b762d', 'admin', 'Cao Đức Mạnh', 'Web Developer'),
+(2, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 'Administrator', 'Administrator');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +55,17 @@ CREATE TABLE `brand_tbl` (
   `brand_id` int(11) NOT NULL,
   `brand_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `brand_tbl`
+--
+
+INSERT INTO `brand_tbl` (`brand_id`, `brand_name`) VALUES
+(1, 'Apple'),
+(2, 'Samsung'),
+(3, 'Sony'),
+(4, 'Xiaomi'),
+(5, 'Huawei');
 
 -- --------------------------------------------------------
 
@@ -139,6 +158,20 @@ CREATE TABLE `product_tbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Đang đổ dữ liệu cho bảng `product_tbl`
+--
+
+INSERT INTO `product_tbl` (`product_id`, `product_name`, `image`, `price`, `brand_id`, `quantity`, `description`, `color`, `cpu`, `ram`, `internal`, `external`, `camera`, `battery`, `sim`) VALUES
+(3, 'Iphone X', '', 29990000, 1, 50, '', 'silver', 'Apple A11 Bionic 6 cores', '3 GB', '64 GB', 'không', '2 camera sau 12 MP, camera trước 7 MP', '2716 mAh Li-ion', '1 Nano SIM'),
+(4, 'Iphone 8 Plus 64 GB', '', 23990000, 1, 50, '', 'silver,white,gold', 'Apple A11 Bionic 6 nhân', '3 GB', '64 GB', 'Không', '2 camera sau 12 MP, camera trước 7 MP', '2691 mAh', '1 Nano SIM'),
+(5, 'Galaxy S9+ 64GB', '', 24990000, 2, 50, '', 'black,purple', 'Exynos 9810 8 nhân 64 bit', '6 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 400 GB', '2 camera sau 12 MP, camera trước 8 MP', '3500 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(6, 'Galaxy S8 Plus', '', 17990000, 2, 50, '', 'black', 'Exynos 8895 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '12 MP', '3500 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(7, 'Xperaia XZ Premium', '', 16990000, 3, 50, '', 'black,silver', 'Qualcomm Snapdragon 835 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '19 MP', '3230 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(8, 'Xperia XZ1', '', 15990000, 3, 50, '', 'black,siver', 'Qualcomm Snapdragon 835 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '19 MP', '2700 mAh', '2 Nano SIM'),
+(9, 'Mi A1 64GB', '', 5490000, 4, 50, '', 'red,black', 'Snapdragon 625 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 128 GB', '2 camera 12 MP', '3080 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(10, 'Redmi Note 4', '', 4290000, 4, 50, '', 'silver,black,gold', 'Snapdragon 625 8 nhân 64-bit', '3 GB', '32 GB', 'MicroSD, hỗ trợ tối đa 128 GB', '13 MP', '4100 mAh', 'Nano SIM & Micro SIM (SIM 2 chung khe thẻ nhớ)');
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -196,13 +229,13 @@ ALTER TABLE `product_tbl`
 -- AUTO_INCREMENT cho bảng `admin_tbl`
 --
 ALTER TABLE `admin_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `brand_tbl`
 --
 ALTER TABLE `brand_tbl`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `feedback_tb`
@@ -232,7 +265,7 @@ ALTER TABLE `order_tbl`
 -- AUTO_INCREMENT cho bảng `product_tbl`
 --
 ALTER TABLE `product_tbl`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -242,7 +275,8 @@ ALTER TABLE `product_tbl`
 -- Các ràng buộc cho bảng `orderdetails_tbl`
 --
 ALTER TABLE `orderdetails_tbl`
-  ADD CONSTRAINT `orderdetails_tbl_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_tbl` (`order_id`);
+  ADD CONSTRAINT `orderdetails_tbl_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_tbl` (`order_id`),
+  ADD CONSTRAINT `orderdetails_tbl_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product_tbl` (`product_id`);
 
 --
 -- Các ràng buộc cho bảng `order_tbl`
@@ -254,8 +288,7 @@ ALTER TABLE `order_tbl`
 -- Các ràng buộc cho bảng `product_tbl`
 --
 ALTER TABLE `product_tbl`
-  ADD CONSTRAINT `product_tbl_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brand_tbl` (`brand_id`),
-  ADD CONSTRAINT `product_tbl_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `orderdetails_tbl` (`product_id`);
+  ADD CONSTRAINT `product_tbl_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brand_tbl` (`brand_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

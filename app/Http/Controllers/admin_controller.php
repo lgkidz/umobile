@@ -35,7 +35,7 @@ class admin_controller extends Controller
                                    ->where('username','=',$input_username)
                                    ->first();
 
-      if($password_check && $input_password == $password_check->password){
+      if($password_check && sha1($input_password) == $password_check->password){
         $admin = DB::table('admin_tbl')->select('id','username','role','real_name','description')
                                      ->where('username','=',$input_username)
                                      ->first();
