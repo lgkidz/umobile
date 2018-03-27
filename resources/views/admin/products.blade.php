@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box box-info">
-            <form action="{{URL::action('admin_controller@addproduct')}}" method="post">
+            <form action="{{URL::action('admin_controller@addproduct')}}" method="post" enctype="multipart/form-data">
             <div class="box-header with-border">
               <h3 class="box-title">Add a product</h3>
               <div class="box-tools pull-right">
@@ -61,16 +61,16 @@
                     <div class="form-group">
                       <label>Available Color</label>
                       <div class="checkbox">
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="white">White</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="black">Black</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="red">Red</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="blue">Blue</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="white">White</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="black">Black</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="red">Red</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="blue">Blue</label>
                       </div>
                       <div class="checkbox">
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="purple">Purple</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="silver">Silver</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="gld">Gold</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="color" value="pink">Pink</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="purple">Purple</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="silver">Silver</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="gld">Gold</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="color[]" value="pink">Pink</label>
                       </div>
                     </div>
                   </div>
@@ -143,6 +143,7 @@
               <th>Image</th>
               <th>Color</th>
               <th>Specs</th>
+              <th>Price</th>
               <th>Description</th>
               <th>Quantity In Stock</th>
             </tr>
@@ -157,6 +158,7 @@
               <th>Image</th>
               <th>Color</th>
               <th>Specs</th>
+              <th>Price</th>
               <th>Description</th>
               <th>Quantity In Stock</th>
             </tr>
@@ -217,6 +219,7 @@ function filltable(data){
   var rows='';
   for(i = 0;i<data.length;i++){
     rows += '<tr oncontextmenu="return showcontextmenu(' + original_table_data[i].product_id + ');"">';
+    rows += '<td id="name_row_' + data[i].product_id + '">' + data[i].product_id + '</td>';
     rows += '<td id="name_row_' + data[i].product_id + '">' + data[i].product_name + '</td>';
     rows += '<td id="brand_row_' + data[i].brand_id + '">' + data[i].brand_name + '</td>';
     rows += '<td id="image_row_' + data[i].product_id + '">' + data[i].image + '</td>';

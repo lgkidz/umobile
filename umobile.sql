@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 24, 2018 lúc 04:44 PM
+-- Thời gian đã tạo: Th3 27, 2018 lúc 10:37 AM
 -- Phiên bản máy phục vụ: 10.1.21-MariaDB
 -- Phiên bản PHP: 7.1.11
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `umobile`
 --
+CREATE DATABASE IF NOT EXISTS `umobile` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `umobile`;
 
 -- --------------------------------------------------------
 
