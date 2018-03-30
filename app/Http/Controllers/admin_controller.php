@@ -53,35 +53,4 @@ class admin_controller extends Controller
     return redirect("/admin");
   }
 
-  public function list_product(){
-    $brands = DB::table('brand_tbl')->select('*')->get()->toJson();
-    $result = DB::table('product_tbl')->join('brand_tbl','product_tbl.brand_id','brand_tbl.brand_id')
-                                      ->select('product_tbl.*','brand_tbl.brand_name')
-                                      ->get()->toJson();
-    return response()->json(['products'=>$result, 'brands'=>$brands]);
-  }
-
-  public function addproduct(Request $req){
-    $brand_id = $req->input('brand');
-    $name = $req->input('name');
-    $quantity = $req->input('quantity');
-    $price = $req->input('price');
-    $cpu = $req->input('cpu');
-    $ram = $req->input('ram');
-    $internal = $req->input('internal');
-    $external = $req->input('external');
-    $camera = $req->input('camera');
-    $battery = $req->input('battery');
-    $sim = $req->input('sim');
-    $colors = array();
-    foreach($req->input('color') as $c){
-      array_push($colors,$c);
-    }
-    $ava = $req->avatar;
-    $req->avatar->storeAs('images/products', $ava);
-    //$ava_name = $req->avatar->path();
-    $x = array($brand_id,$name,$quantity,$price,$cpu,$ram,$internal,$external,$camera,$battery,$sim,$colors,$ava);
-    echo '<pre>';
-    var_dump($x);
-  }
 }

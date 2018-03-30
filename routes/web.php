@@ -18,5 +18,6 @@ Route::get('/admin', 'admin_controller@check_authority');
 Route::get('/admin/{path?}', 'admin_controller@check_path');
 Route::post('/adminlogin', 'admin_controller@admin_login');
 Route::get('/adminlogout', 'admin_controller@admin_logout');
-Route::post('/admin/products/zz','admin_controller@addproduct');
-Route::post('/admin/list_product','admin_controller@list_product');
+Route::post('/admin/products/addproduct','admin_products_controller@addproduct');
+Route::post('/admin/products/list_product','admin_products_controller@list_product');
+Route::post('/admin/products/editproduct','admin_products_controller@editproduct');
