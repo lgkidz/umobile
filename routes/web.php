@@ -21,3 +21,4 @@ Route::get('/adminlogout', 'admin_controller@admin_logout');
 Route::post('/admin/products/addproduct','admin_products_controller@addproduct');
 Route::post('/admin/products/list_product','admin_products_controller@list_product');
 Route::post('/admin/products/editproduct','admin_products_controller@editproduct');
+Route::post('/admin/products/deleteproduct','admin_products_controller@deleteproduct');

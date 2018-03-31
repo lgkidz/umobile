@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -134,4 +134,13 @@ class admin_products_controller extends Controller
     }
     return redirect('/admin/products');
   }
+  public function deleteproduct(Request $req){
+    $id = $req->deleteid;
+    $product_image = DB::table('product_tbl')->select('image')->where('product_id' , '=' , $id)->get();
+    $image_path = "public/" . $product_image[0]->image;
+    Storage::delete($image_path);
+    DB::table('product_tbl')->where('product_id',$req->deleteid)->delete();
+    return redirect('/admin/products');
+  }
+
 }

@@ -433,7 +433,7 @@ function fillmodal(id){
   window.onclick = hidecontextmenu;
   function showcontextmenu(id){
     $('#edit_link').attr('onclick','fillmodal(' + id + ');');
-    $('#delete_link').attr('onclick','ajaxdelete(' + id + ');');
+    $('#delete_link').attr('onclick','deleteproduct(' + id + ');');
     contextmenu.style.display = "block";
     contextmenu.style.left = event.pageX + 'px';
     contextmenu.style.top = event.pageY + 'px';
@@ -442,6 +442,26 @@ function fillmodal(id){
     function hidecontextmenu(){
       contextmenu.style.display = 'none';
     }
+
+    function deleteproduct(id){
+      var current_product;
+      for(var i = 0;i<original_table_data.length;i++){
+        if(original_table_data[i].product_id == id){
+          current_product = original_table_data[i];
+          break;
+        }
+      }
+      var conf = confirm("Do you really want to permanently delete " + current_product.brand_name + " " + current_product.product_name + "? This cannot be undone!");
+      if(conf == true){
+        $('#delete_id_field').val(id);
+        $('#deleteform').submit();
+      }
+    }
   </script>
+  <form id="deleteform" method="post" action="<?php echo e(URL::action('admin_products_controller@deleteproduct')); ?>">
+    <?php echo e(csrf_field()); ?>
+
+    <input type="hidden" id="delete_id_field" name="deleteid">
+  </form>
 </body>
 </html>
