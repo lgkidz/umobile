@@ -13,3 +13,26 @@
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
 <script src="/adminlte/dist/js/main.js"></script>
 <link rel="stylesheet" href="/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<style>
+#contextmenu{
+  width: 200px;
+  background: white;
+  height: auto;
+  box-shadow: 2px 2px 2px 0 grey;
+  z-index: 99 !important;
+  position: absolute;
+  display: none;
+  border: 1px solid #ccc;
+}
+.context-menu ul{
+  list-style: none;
+  padding: 5px 0px 5px 0px;
+}
+.context-menu ul li{
+  padding: 10px 0px 10px 25px;
+  cursor: pointer;
+}
+.context-menu ul li:hover{
+  background: #eee;
+}
+</style>

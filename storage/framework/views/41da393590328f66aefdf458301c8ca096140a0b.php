@@ -7,29 +7,6 @@
   <title>Products</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <?php echo $__env->make('admin.jsandcss', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<style>
-#contextmenu{
-  width: 200px;
-  background: white;
-  height: auto;
-  box-shadow: 2px 2px 2px 0 grey;
-  z-index: 99 !important;
-  position: absolute;
-  display: none;
-  border: 1px solid #ccc;
-}
-.context-menu ul{
-  list-style: none;
-  padding: 5px 0px 5px 0px;
-}
-.context-menu ul li{
-  padding: 10px 0px 10px 25px;
-  cursor: pointer;
-}
-.context-menu ul li:hover{
-  background: #eee;
-}
-</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
