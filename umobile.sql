@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 27, 2018 lúc 10:37 AM
+-- Thời gian đã tạo: Th5 11, 2018 lúc 07:29 PM
 -- Phiên bản máy phục vụ: 10.1.21-MariaDB
 -- Phiên bản PHP: 7.1.11
 
@@ -30,14 +30,16 @@ USE `umobile`;
 -- Cấu trúc bảng cho bảng `admin_tbl`
 --
 
-CREATE TABLE `admin_tbl` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `admin_tbl`;
+CREATE TABLE IF NOT EXISTS `admin_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `real_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `admin_tbl`
@@ -53,10 +55,12 @@ INSERT INTO `admin_tbl` (`id`, `username`, `password`, `role`, `real_name`, `des
 -- Cấu trúc bảng cho bảng `brand_tbl`
 --
 
-CREATE TABLE `brand_tbl` (
-  `brand_id` int(11) NOT NULL,
-  `brand_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS `brand_tbl`;
+CREATE TABLE IF NOT EXISTS `brand_tbl` (
+  `brand_id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`brand_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `brand_tbl`
@@ -67,7 +71,10 @@ INSERT INTO `brand_tbl` (`brand_id`, `brand_name`) VALUES
 (2, 'Samsung'),
 (3, 'Sony'),
 (4, 'Xiaomi'),
-(5, 'Huawei');
+(5, 'Huawei'),
+(6, 'Nokia'),
+(7, 'LG'),
+(8, 'Oppo');
 
 -- --------------------------------------------------------
 
@@ -75,12 +82,23 @@ INSERT INTO `brand_tbl` (`brand_id`, `brand_name`) VALUES
 -- Cấu trúc bảng cho bảng `feedback_tb`
 --
 
-CREATE TABLE `feedback_tb` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `feedback_tb`;
+CREATE TABLE IF NOT EXISTS `feedback_tb` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `pen_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `content` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `feedback_tb`
+--
+
+INSERT INTO `feedback_tb` (`id`, `pen_name`, `email`, `content`) VALUES
+(1, 'Anoy', 'lgkidz1@gmail.com', 'ook ok ok Gud!'),
+(2, 'Cao Đức Mạnh', 'email@mail.com', 'asfasfa'),
+(3, 'Cao Đức Mạnh', 'email@mail.com', 'ok');
 
 -- --------------------------------------------------------
 
@@ -88,18 +106,28 @@ CREATE TABLE `feedback_tb` (
 -- Cấu trúc bảng cho bảng `member_tbl`
 --
 
-CREATE TABLE `member_tbl` (
-  `member_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `member_tbl`;
+CREATE TABLE IF NOT EXISTS `member_tbl` (
+  `member_id` int(11) NOT NULL AUTO_INCREMENT,
+  `avatar` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `locale` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ban` bit(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ban` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`member_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `member_tbl`
+--
+
+INSERT INTO `member_tbl` (`member_id`, `avatar`, `first_name`, `last_name`, `phone`, `address`, `email`, `password`, `gender`, `ban`) VALUES
+(1, '', 'Cao', 'Đức Mạnh', '0974232266', 'Hà Nội', 'email@mail.com', 'c984aed014aec7623a54f0591da07a85fd4b762d', 'Nam', 0),
+(2, '', 'Văn thị', 'Khải', '113', 'BN', 'test@test.com', 'c984aed014aec7623a54f0591da07a85fd4b762d', 'Nữ', 0);
 
 -- --------------------------------------------------------
 
@@ -107,14 +135,18 @@ CREATE TABLE `member_tbl` (
 -- Cấu trúc bảng cho bảng `orderdetails_tbl`
 --
 
-CREATE TABLE `orderdetails_tbl` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `orderdetails_tbl`;
+CREATE TABLE IF NOT EXISTS `orderdetails_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `cut_off` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
+  `description` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -123,16 +155,16 @@ CREATE TABLE `orderdetails_tbl` (
 -- Cấu trúc bảng cho bảng `order_tbl`
 --
 
-CREATE TABLE `order_tbl` (
-  `order_id` int(11) NOT NULL,
-  `created_date` datetime NOT NULL,
-  `due_date` datetime NOT NULL,
-  `member_id` int(11) NOT NULL,
-  `status` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `order_tbl`;
+CREATE TABLE IF NOT EXISTS `order_tbl` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer_name` int(11) NOT NULL
+  `customer_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -141,14 +173,15 @@ CREATE TABLE `order_tbl` (
 -- Cấu trúc bảng cho bảng `product_tbl`
 --
 
-CREATE TABLE `product_tbl` (
-  `product_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `product_tbl`;
+CREATE TABLE IF NOT EXISTS `product_tbl` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
   `brand_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `description` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `color` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cpu` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ram` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -156,118 +189,25 @@ CREATE TABLE `product_tbl` (
   `external` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `camera` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `battery` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sim` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `sim` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`product_id`),
+  KEY `brand_id` (`brand_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product_tbl`
 --
 
 INSERT INTO `product_tbl` (`product_id`, `product_name`, `image`, `price`, `brand_id`, `quantity`, `description`, `color`, `cpu`, `ram`, `internal`, `external`, `camera`, `battery`, `sim`) VALUES
-(3, 'Iphone X', '', 29990000, 1, 50, '', 'silver', 'Apple A11 Bionic 6 cores', '3 GB', '64 GB', 'không', '2 camera sau 12 MP, camera trước 7 MP', '2716 mAh Li-ion', '1 Nano SIM'),
-(4, 'Iphone 8 Plus 64 GB', '', 23990000, 1, 50, '', 'silver,white,gold', 'Apple A11 Bionic 6 nhân', '3 GB', '64 GB', 'Không', '2 camera sau 12 MP, camera trước 7 MP', '2691 mAh', '1 Nano SIM'),
-(5, 'Galaxy S9+ 64GB', '', 24990000, 2, 50, '', 'black,purple', 'Exynos 9810 8 nhân 64 bit', '6 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 400 GB', '2 camera sau 12 MP, camera trước 8 MP', '3500 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
-(6, 'Galaxy S8 Plus', '', 17990000, 2, 50, '', 'black', 'Exynos 8895 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '12 MP', '3500 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
-(7, 'Xperaia XZ Premium', '', 16990000, 3, 50, '', 'black,silver', 'Qualcomm Snapdragon 835 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '19 MP', '3230 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
-(8, 'Xperia XZ1', '', 15990000, 3, 50, '', 'black,siver', 'Qualcomm Snapdragon 835 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '19 MP', '2700 mAh', '2 Nano SIM'),
-(9, 'Mi A1 64GB', '', 5490000, 4, 50, '', 'red,black', 'Snapdragon 625 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 128 GB', '2 camera 12 MP', '3080 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
-(10, 'Redmi Note 4', '', 4290000, 4, 50, '', 'silver,black,gold', 'Snapdragon 625 8 nhân 64-bit', '3 GB', '32 GB', 'MicroSD, hỗ trợ tối đa 128 GB', '13 MP', '4100 mAh', 'Nano SIM & Micro SIM (SIM 2 chung khe thẻ nhớ)');
-
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `admin_tbl`
---
-ALTER TABLE `admin_tbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `brand_tbl`
---
-ALTER TABLE `brand_tbl`
-  ADD PRIMARY KEY (`brand_id`);
-
---
--- Chỉ mục cho bảng `feedback_tb`
---
-ALTER TABLE `feedback_tb`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `member_tbl`
---
-ALTER TABLE `member_tbl`
-  ADD PRIMARY KEY (`member_id`);
-
---
--- Chỉ mục cho bảng `orderdetails_tbl`
---
-ALTER TABLE `orderdetails_tbl`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Chỉ mục cho bảng `order_tbl`
---
-ALTER TABLE `order_tbl`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `member_id` (`member_id`);
-
---
--- Chỉ mục cho bảng `product_tbl`
---
-ALTER TABLE `product_tbl`
-  ADD PRIMARY KEY (`product_id`),
-  ADD KEY `brand_id` (`brand_id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `admin_tbl`
---
-ALTER TABLE `admin_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT cho bảng `brand_tbl`
---
-ALTER TABLE `brand_tbl`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT cho bảng `feedback_tb`
---
-ALTER TABLE `feedback_tb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `member_tbl`
---
-ALTER TABLE `member_tbl`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `orderdetails_tbl`
---
-ALTER TABLE `orderdetails_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `order_tbl`
---
-ALTER TABLE `order_tbl`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `product_tbl`
---
-ALTER TABLE `product_tbl`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+(3, 'Iphone X', 'products/ipx.jpg', 29990000, 1, 50, '', 'silver,', 'Apple A11 Bionic 6 cores', '3 GB', '64 GB', 'không', '2 camera sau 12 MP, camera trước 7 MP', '2716 mAh Li-ion', '1 Nano SIM'),
+(4, 'Iphone 8 Plus 64 GB', 'products/ip8.png', 23990000, 1, 50, 'This is a god damn Iphone 8', 'white,silver,gold,', 'Apple A11 Bionic 6 nhân', '3 GB', '64 GB', 'Không', '2 camera sau 12 MP, camera trước 7 MP', '2691 mAh', '1 Nano SIM'),
+(5, 'Galaxy S9+ 64GB', 'products/s9plus.jpg', 24990000, 2, 50, '', 'black,purple,', 'Exynos 9810 8 nhân 64 bit', '6 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 400 GB', '2 camera sau 12 MP, camera trước 8 MP', '3500 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(6, 'Galaxy S8 Plus', 'products/s8plus.png', 17990000, 2, 50, '', 'black,', 'Exynos 8895 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '12 MP', '3500 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(7, 'Xperaia XZ Premium', 'products/xz.png', 16990000, 3, 50, '', 'black,silver,', 'Qualcomm Snapdragon 835 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '19 MP', '3230 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(8, 'Xperia XZ1', 'products/xz1.png', 15990000, 3, 50, '', 'black,siver,', 'Qualcomm Snapdragon 835 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '19 MP', '2700 mAh', '2 Nano SIM'),
+(9, 'Mi A1 64GB', 'products/mia1.jpg', 5490000, 4, 50, '', 'red,black,', 'Snapdragon 625 8 nhân 64-bit', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 128 GB', '2 camera 12 MP', '3080 mAh', '2 SIM Nano (SIM 2 chung khe thẻ nhớ)'),
+(10, 'Redmi Note 4', 'products/redminote4.png', 4290000, 4, 50, '', 'silver,black,gold,', 'Snapdragon 625 8 nhân 64-bit', '3 GB', '32 GB', 'MicroSD, hỗ trợ tối đa 128 GB', '13 MP', '4100 mAh', 'Nano SIM & Micro SIM (SIM 2 chung khe thẻ nhớ)'),
+(11, 'P20', 'products/1780756.jpg', 15000000, 5, 60, '', 'purple,', 'Hisilicon Kirin 970 8 nhân', '4 GB', '64 GB', 'MicroSD, hỗ trợ tối đa 256 GB', '20 MP và 12 MP (2 camera)', '3400 mAh Li-po', '2 SIM Nano (SIM 2 chung khe thẻ nhớ), Hỗ trợ 4G');
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -279,12 +219,6 @@ ALTER TABLE `product_tbl`
 ALTER TABLE `orderdetails_tbl`
   ADD CONSTRAINT `orderdetails_tbl_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_tbl` (`order_id`),
   ADD CONSTRAINT `orderdetails_tbl_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product_tbl` (`product_id`);
-
---
--- Các ràng buộc cho bảng `order_tbl`
---
-ALTER TABLE `order_tbl`
-  ADD CONSTRAINT `order_tbl_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`);
 
 --
 -- Các ràng buộc cho bảng `product_tbl`

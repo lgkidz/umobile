@@ -32,14 +32,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{sizeof($data)}}</h3>
 
-              <p>New Orders</p>
+              <p>Products Ordered</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/admin/orders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -62,14 +62,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>{{sizeof($mems)}}</h3>
 
               <p>User Registrations</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/admin/members" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -96,7 +96,6 @@
           <div class="box box-danger">
                 <div class="box-header with-border">
                   <h3 class="box-title">Latest Members</h3>
-
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
@@ -107,11 +106,17 @@
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                   <ul class="users-list clearfix">
-                    <li>
-                      <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                      <a class="users-list-name" href="#">Alexander Pierce</a>
-                      <span class="users-list-date">Today</span>
-                    </li>
+                    @foreach ($mems as $m)
+                      <li>
+                        <img src=" @if ($m->avatar != "")
+                          /storage/{{$m->avatar}}
+                        @else
+                          ../img/defaultface.jpg
+                        @endif" alt="User Image" style="max-height:150px;">
+                        <a class="users-list-name" href="/admin/members">{{$m->first_name}} {{$m->last_name}}</a>
+                        <span class="users-list-date">{{$m->email}}</span>
+                      </li>
+                    @endforeach
                   </ul>
                   <!-- /.users-list -->
                 </div>
@@ -141,16 +146,44 @@
                     <th>Order ID</th>
                     <th>Item</th>
                     <th>Status</th>
-                    <th>Due Date</th>
+                    <th>Order Date</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                    <td>Call of Duty IV</td>
-                    <td>12/12/2018</td>
-                    <td><span class="label label-success">Shipped</span></td>
-                  </tr>
+                    <?php
+                    $i = 0;
+                    $j;
+                    $current_order = $data[0]->order_id;
+                    do{
+                      if($i > 0 && $current_order == $data[$i]->order_id){
+                        $current_order = $data[$i]->order_id;
+                        $i++;
+                        continue;
+                      }
+                      else{
+                        $current_order = $data[$i]->order_id;
+                        ?>
+                        <tr>
+                            <td><?php echo $data[$i]->order_id ?></td>
+                            <td>
+                              <?php
+                              for($j = 0;$j<sizeof($data);$j++){
+                                if($data[$j]->order_id == $current_order){
+                                  echo $data[$j]->quantity . " " . $data[$j]->product_name;
+                                  echo "<br>";
+                                }
+                              }
+                              ?>
+                            </td>
+                            <td><?php echo $data[$i]->status ?></td>
+                            <td><?php echo $data[$i]->created_date ?></td>
+                        </tr>
+                        <?php
+                        $i++;
+                      }
+                    }
+                    while($i<sizeof($data));
+                    ?>
                   </tbody>
                 </table>
               </div>
@@ -158,7 +191,6 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
               <a href="/admin/orders" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
             </div>
             <!-- /.box-footer -->
@@ -181,14 +213,12 @@
               <ul class="products-list product-list-in-box">
                 <li class="item">
                   <div class="product-img">
-                    <img src="dist/img/default-50x50.gif" alt="Product Image">
+                    <img src="/storage/{{$prod[0]->image}}" alt="Product Image">
                   </div>
                   <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title">Samsung TV
-                      <span class="label label-warning pull-right">$1800</span></a>
-                    <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
+                    <a href="/storage/{{$prod[0]->image}}" class="product-title">{{$prod[0]->product_name}}
+                      <span class="label label-warning pull-right">{{number_format($prod[0]->price)}} VND</span></a>
+
                   </div>
                 </li>
               </ul>

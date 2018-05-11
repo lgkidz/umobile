@@ -35,7 +35,6 @@
                 <thead>
                 <tr>
                   <th>Order ID</th>
-                  <th>Member ID</th>
                   <th>Customer Name</th>
                   <th>Ordered</th>
                   <th>Phone</th>
@@ -50,7 +49,6 @@
                 <tfoot>
                   <tr>
                     <th>Order ID</th>
-                    <th>Member ID</th>
                     <th>Customer Name</th>
                     <th>Ordered</th>
                     <th>Phone</th>
@@ -118,7 +116,6 @@ function filltable(data){
       current_order = data[i].order_id;
       rows += '<tr id="row_num_' + data[i].order_id + '" >';
       rows += '<td id="order_id_row_' + data[i].order_id + '">' + data[i].order_id + '</td>';
-      rows += '<td id="member_id_row_' + data[i].order_id + '">' + data[i].member_id + '</td>';
       rows += '<td id="customer_name_row_' + data[i].order_id + '">' + data[i].customer_name + '</td>';
       rows += '<td id="ordered_row_' + data[i].order_id + '">';
       for(j = 0;j<data.length;j++){

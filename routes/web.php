@@ -11,9 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/','home_controller@home');
+Route::get('/products','home_controller@products');
+Route::get('/products/{brand?}','home_controller@productsbybrand');
+Route::get('/products/{brand?}/{id?}','home_controller@phone');
+Route::get('/cart','home_controller@cart');
+Route::get('/checkout','home_controller@checkout');
+##########################################################
+Route::post('/addtocart','order_controller@addtocart');
+Route::post('/removefromcart','order_controller@removefromcart');
+Route::post('/addorder','order_controller@checkout');
+#########################################################
+Route::post('/userlogin','user_controller@login');
+Route::post('/usersignup','user_controller@signup');
+Route::get('/logout','user_controller@logout');
+Route::get('/profile','user_controller@profilepage');
+Route::post('/profile/edit','user_controller@editInfo');
+Route::post('/profile/feedback','user_controller@feedback');
 
 ##########################################################
 Route::get('/admin', 'admin_controller@check_authority');
