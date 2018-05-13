@@ -81,7 +81,7 @@
                 <div class="col-xs-12"  style="margin-top:20px;">
                     <div class="brandinfo col-xs-12">
                         <h3 class="pull-left">Điện thoại</h3>
-                        <h5 class="pull-right" style="margin-top:22px;"><a class="middle-product-looking-more">Xem thêm >></a></h5>
+                        <h5 class="pull-right" style="margin-top:22px;"><a href="/products" class="middle-product-looking-more">Xem thêm >></a></h5>
                     </div>
                     <div class="col-xs-12" style="border: 1px solid #ECECEC;border-top:none;">
                       <?php
@@ -90,7 +90,7 @@
                         <div class="col-xs-12 col-md-3 text-center" style="border-top:1px solid #ECECEC;">
                           <div class="thumbnailx">
                                 <div class="col-xs-12">
-                                <a href="/products/<?php echo $pros[$i]->product_id ?>">
+                                <a href="/products/<?php echo $pros[$i]->brand_name ?>/<?php echo $pros[$i]->product_id ?>">
                                     <img src="/storage/<?php echo $pros[$i]->image ?>" alt="" class="group list-group-image" style="max-height: 200px;">
                                     <h4 class="group inner list-group-item-heading"><?php echo $pros[$i]->brand_name ?> <?php echo $pros[$i]->product_name ?></h4>
                                 </a>
@@ -103,7 +103,7 @@
                                   </div>
                                     <div class="col-xs-12" style="padding-bottom:20px;">
                                         <p class="lead"><?php echo number_format($pros[$i]->price) ?> VND</p>
-                                        <a class="btn btn-success" href="/products/<?php echo $pros[$i]->product_id ?>">Xem chi tiết</a>
+                                        <a class="btn btn-success" href="/products/<?php echo $pros[$i]->brand_name ?>/<?php echo $pros[$i]->product_id ?>">Xem chi tiết</a>
                                     </div>
                               </div>
                         </div>

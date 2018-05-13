@@ -25,6 +25,7 @@ body {
 .nav-text:hover{
     background: #4CAF50 !important;
     color:white !important;
+    cursor: pointer;
 }
 .dropdown-content a:hover {background-color: #ddd}
 

@@ -124,9 +124,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="checkout-button">
-                                <a href="/checkout" class="btn btn-success">Tiến hành thanh toán</a>
-                            </div>
+                            <?php if(sizeof($phones)): ?>
+                              <div class="checkout-button">
+                                  <a href="/checkout" class="btn btn-success">Tiến hành thanh toán</a>
+                              </div>
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
