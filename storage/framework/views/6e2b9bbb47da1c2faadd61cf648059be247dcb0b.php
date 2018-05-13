@@ -14,8 +14,8 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <div class="input-group" style="width: 300px;height:70px;padding:18px;">
-                            <input class="form-control" type="search" placeholder="Bạn muốn tìm gì?">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <form method="post" action="<?php echo e(URL::action('home_controller@search')); ?>"><?php echo e(csrf_field()); ?><input name="sear" class="form-control" type="text" placeholder="Bạn muốn tìm gì?" required></form>
                         </div>
                     </li>
                     <li class="dropdown"><a class="dropdown-toggle nav-text" href="/products"><span class="fa fa-mobile" style="font-size:18px"> </span> Điện thoại

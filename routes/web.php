@@ -17,6 +17,7 @@ Route::get('/products/{brand?}','home_controller@productsbybrand');
 Route::get('/products/{brand?}/{id?}','home_controller@phone');
 Route::get('/cart','home_controller@cart');
 Route::get('/checkout','home_controller@checkout');
+Route::post('/search','home_controller@search');
 ##########################################################
 Route::post('/addtocart','order_controller@addtocart');
 Route::post('/removefromcart','order_controller@removefromcart');

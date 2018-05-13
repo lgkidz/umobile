@@ -78,7 +78,6 @@ class home_controller extends Controller
     }
 
     public function checkout(){
-
       if(session('cart') != null){
         $phones = array();
         foreach (session('cart') as $c) {
@@ -91,5 +90,12 @@ class home_controller extends Controller
       else{
         return redirect('/');
       }
+    }
+
+    public function search(Request $req){
+      $brands = $this->get_all_brands();
+      $sear = $req->sear;
+      $pros = DB::table('product_tbl')->join('brand_tbl','product_tbl.brand_id','=','brand_tbl.brand_id')->where('product_tbl.product_name','like','%'.$sear.'%')->orwhere('brand_tbl.brand_name','like','%'.$sear.'%')->get();
+      return view('search',['query' => $sear, 'pros' => $pros,'brands' => $brands]);
     }
 }
