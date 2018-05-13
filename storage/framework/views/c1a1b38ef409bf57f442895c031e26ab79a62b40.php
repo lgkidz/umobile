@@ -7,12 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title>UMobile-Mobile for you, Mobile for the future</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script> -->
+    <link rel="stylesheet" href="/css/offline.css">
+    <script type="text/javascript" src="/js/offline.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <script type="text/javascript" src="js/index.js"></script>
     <style>
@@ -155,7 +157,12 @@
                                         <table class="table table-striped table-hover table-list-orders">
                                             <thead>
                                                 <tr>
-                                                    <th colspan="7"><h4 style="text-align: left;font-weight: bold">Bạn đã đặt 5 sản phẩm</h4></th>
+                                                    <th colspan="7"><h4 style="text-align: left;font-weight: bold">Bạn có <?php if($data != null): ?>
+                                                      <?php echo e(sizeof($data)); ?>
+
+                                                    <?php else: ?>
+                                                      0
+                                                    <?php endif; ?> đơn hàng</h4></th>
                                                 </tr>
                                                 <tr>
                                                     <th><h5 style="font-weight: bold">Ngày đặt</h5></th>
@@ -169,6 +176,7 @@
                                             </thead>
                                             <tbody>
                                               <?php
+                                              if(sizeof($data)){
                                               $i = 0;
                                               $j;
                                               $current_order = $data[0]->order_id;
@@ -215,6 +223,7 @@
                                                 }
                                               }
                                               while($i<sizeof($data));
+                                              }
                                               ?>
                                             </tbody>
                                         </table>

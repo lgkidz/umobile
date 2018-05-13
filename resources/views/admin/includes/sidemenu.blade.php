@@ -48,6 +48,11 @@
           <i class="fa fa-thumbs-up"></i> <span>Quản lý feedback & mailing</span>
         </a>
       </li>
+      <li>
+        <a href="https://dashboard.tawk.to/#/dashboard">
+          <i class="fa fa-comments"></i> <span>Hỗ trợ trực tuyến</span>
+        </a>
+      </li>
 
 
     </ul>

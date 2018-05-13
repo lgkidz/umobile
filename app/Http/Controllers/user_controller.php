@@ -57,8 +57,8 @@ class user_controller extends Controller
       $exist = $this->checkexist($email);
       if(!$exist){
         $arrname = explode(" ",$name,2);
-        $first_name = $arrname[1];
-        $last_name = $arrname[0];
+        $first_name = $arrname[0];
+        $last_name = $arrname[1];
         $encryptedpass = sha1($password);
 
         $id = DB::table('member_tbl')->insertGetId(['first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'password' => $encryptedpass]);
@@ -67,7 +67,7 @@ class user_controller extends Controller
         $req->session()->put('first_name', $first_name);
         $req->session()->put('last_name', $last_name);
         $req->session()->put('email', $email);
-        return redirect('/');
+        return redirect('/profile');
       }
       else{
         return redirect('/')->with('signuperr','Email đã được đăng ký');
@@ -92,8 +92,8 @@ class user_controller extends Controller
       $member_id = session('member_id');
       session()->put('first_name', $first_name);
       session()->put('last_name', $last_name);
-      $req->session()->put('address', $address);
-      $req->session()->put('phone', $phone);
+      session()->put('address', $address);
+      session()->put('phone', $phone);
       $image_path = "";
       if(isset($data['avatar'])){
         $imagename =  $data['avatar']->getClientOriginalName();
