@@ -55,7 +55,7 @@
                                     <div class="panel panel-body">
                                         <div class="row">
                                             <div class="col-md-4 col-lg-4" align="center">
-                                                <img src="<?php if($mem->avatar != ""): ?>
+                                                <img src="<?php if($mem->avatar != null && $mem->avatar != ""): ?>
                                                   /storage/<?php echo e($mem->avatar); ?>
 
                                                 <?php else: ?>
@@ -275,7 +275,12 @@
 
                     <div class="img-select-block">
                         <label>Ảnh đại diện</label>
-                        <img id="avatar" src="/storage/<?php echo e($mem->avatar); ?>" class="img img-responsive img-circle" alt="" style="height: 100px; width:100px">
+                        <img id="avatar" src="<?php if($mem->avatar != null && $mem->avatar != ""): ?>
+                          /storage/<?php echo e($mem->avatar); ?>
+
+                        <?php else: ?>
+                          img/defaultface.jpg
+                        <?php endif; ?>" class="img img-responsive img-circle" alt="" style="height: 100px; width:100px">
                         <input type="file" id="input-select-img-avatar" name="avatar" onchange="loadFile(event)">
                     </div>
                     <div class="form-group">
@@ -351,7 +356,10 @@
             $('#address_field').html(tabledata[0].address);
             $('#phone_field').html(tabledata[0].phone);
             $('.userfname').html('<span class="fa fa-user"></span> ' + tabledata[0].last_name + ' <span class="caret"></span>');
-            $('#uavatar').attr("src", '/storage/' + tabledata[0].avatar);
+            if(tabledata[0].avatar != ""){
+              $('#uavatar').attr("src", '/storage/' + tabledata[0].avatar);
+            }
+
          }
       });
     }
